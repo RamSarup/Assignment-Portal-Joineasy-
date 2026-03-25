@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { assignments as initialData } from "../data/mockData";
 import ConfirmationModal from "../components/ConfirmationModal";
 
-function StudentDashboard() {
-  const [assignments, setAssignments] = useState(initialData);
+function StudentDashboard({ assignments, setAssignments }) {
   const [selectedId, setSelectedId] = useState(null);
 
   const handleSubmitClick = (id) => {
-    setSelectedId(id); // open modal
+    setSelectedId(id);
   };
 
   const confirmSubmit = () => {
@@ -15,10 +13,6 @@ function StudentDashboard() {
       a.id === selectedId ? { ...a, submitted: true } : a
     );
     setAssignments(updated);
-    setSelectedId(null);
-  };
-
-  const cancelSubmit = () => {
     setSelectedId(null);
   };
 
@@ -54,7 +48,7 @@ function StudentDashboard() {
       {selectedId && (
         <ConfirmationModal
           onConfirm={confirmSubmit}
-          onCancel={cancelSubmit}
+          onCancel={() => setSelectedId(null)}
         />
       )}
     </div>

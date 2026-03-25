@@ -5,15 +5,18 @@ import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   const [role, setRole] = useState("student");
 
+  const [assignments, setAssignments] = useState([
+    { id: 1, title: "DBMS Assignment", submitted: false },
+    { id: 2, title: "OS Assignment", submitted: false },
+  ]);
+
   return (
     <div className="min-h-screen bg-blue-100 flex flex-col items-center p-4">
       
-      {/* Header */}
       <h1 className="text-2xl font-bold mb-4">
         Assignment Dashboard
       </h1>
 
-      {/* Role Switch Buttons */}
       <div className="flex gap-4 mb-6">
         <button
           onClick={() => setRole("student")}
@@ -38,12 +41,17 @@ function App() {
         </button>
       </div>
 
-      {/* Dashboard Content */}
       <div className="w-full max-w-2xl">
         {role === "student" ? (
-          <StudentDashboard />
+          <StudentDashboard
+            assignments={assignments}
+            setAssignments={setAssignments}
+          />
         ) : (
-          <AdminDashboard />
+          <AdminDashboard
+            assignments={assignments}
+            setAssignments={setAssignments}
+          />
         )}
       </div>
     </div>
