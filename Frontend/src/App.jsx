@@ -32,7 +32,6 @@ function App() {
     setUser(null);
   };
 
-  // 🔐 If not logged in → show login page
   if (!user) {
     return <LoginPage setUser={setUser} />;
   }
