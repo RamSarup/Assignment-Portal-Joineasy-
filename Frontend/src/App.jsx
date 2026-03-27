@@ -18,7 +18,7 @@ function App() {
             id: 1,
             title: "DBMS Assignment",
             link: "https://drive.google.com/",
-            submitted: false,
+            submittedBy: []
           },
         ];
   });
@@ -56,11 +56,13 @@ function App() {
           <StudentDashboard
             assignments={assignments}
             setAssignments={setAssignments}
+            user={user}
           />
         ) : (
           <AdminDashboard
             assignments={assignments}
             setAssignments={setAssignments}
+            user={user}
           />
         )}
       </div>
