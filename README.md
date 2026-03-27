@@ -1,52 +1,79 @@
-# Assignment-Portal-Joineasy-
-Round task - 1 to create a website frontend for both Admin and student use.
-
-
 # 📚 Assignment & Review Dashboard
 
-A clean and responsive role-based dashboard for managing student assignments. Built using React and Tailwind CSS, this project simulates a real-world assignment submission system with admin and student workflows.
+A clean and responsive role-based dashboard for managing student assignments. Built using React and Tailwind CSS, this project simulates a real-world assignment submission system with authentication, role-based access, and per-user tracking.
 
 ---
 
 ## 🚀 Features
 
+### 🔐 Authentication System
+
+* Login with username, password, and role (Student/Admin)
+* Role-based access control
+* Persistent login using localStorage
+* Logout functionality
+
+---
+
 ### 👨‍🎓 Student
 
-* View assigned tasks
+* View all assigned tasks
 * Access submission links (Google Drive)
-* Submit assignments with double confirmation
-* Track submission status (Submitted / Pending)
+* Submit assignments with double confirmation modal
+* Track **individual submission status**
+* Submission stored per user using `submittedBy` array
+
+---
 
 ### 👨‍🏫 Admin
 
 * Create assignments with title and Drive link
 * View all assignments
-* Track submission progress
-* Visual progress bar for completion status
+* Track **which students submitted each assignment**
+* View submission list (`submittedBy`)
+* Visual progress tracking using progress bars
 
 ---
 
 ## 🔁 Workflow
 
+### 🔹 Authentication Flow
+
+1. User logs in with username and role
+2. User is stored in localStorage
+3. Based on role:
+
+   * Student → Student Dashboard
+   * Admin → Admin Dashboard
+
+---
+
 ### 🔹 Admin Flow
 
-1. Admin creates a new assignment
-2. Adds title and external Drive submission link
-3. Assignment is stored in global state
+1. Admin creates assignment
+2. Adds title and Drive link
+3. Assignment is stored globally
+4. Admin monitors submission status of students
+
+---
 
 ### 🔹 Student Flow
 
-1. Student views all assignments
-2. Clicks “Open Submission Link” to submit externally
-3. Returns and clicks “Submit”
+1. Student views assignments
+2. Opens submission link (Google Drive)
+3. Clicks "Submit"
 4. Confirms submission via modal
-5. Status updates instantly
+5. Username is added to `submittedBy`
+6. Status updates instantly
+
+---
 
 ### 🔹 Data Flow
 
-* State is managed in the root (`App.jsx`)
+* Centralized state management in `App.jsx`
 * Shared across components via props
-* Changes reflect instantly across roles
+* Real-time updates between Admin & Student views
+* Data persisted using localStorage
 
 ---
 
@@ -56,20 +83,25 @@ A clean and responsive role-based dashboard for managing student assignments. Bu
 
 * `useState` → State management
 * `useEffect` → Data persistence
-* Lifting State Up → Shared data between Admin & Student
+* Lifting State Up → Shared data across roles
 * Conditional Rendering → Role-based UI
 * Component-based architecture
+
+---
 
 ### 🎨 UI & Styling
 
 * Tailwind CSS for responsive design
 * Reusable components (Modal, Progress Bar)
-* Clean card-based layout
+* Clean and modern card-based UI
+
+---
 
 ### 💾 Data Handling
 
 * localStorage for persistence
-* JSON-based mock data (no backend)
+* Simulated backend using JSON structure
+* Per-user submission tracking using arrays
 
 ---
 
@@ -83,6 +115,7 @@ src/
   * ProgressBar.jsx
 * pages/
 
+  * LoginPage.jsx
   * StudentDashboard.jsx
   * AdminDashboard.jsx
 * App.jsx
@@ -110,41 +143,45 @@ npm run dev
 ## 📱 Responsiveness
 
 * Fully responsive design
-* Works across desktop and mobile screens
+* Optimized for both desktop and mobile devices
 
 ---
 
 ## 🔔 Additional Features
 
 * Toast notifications for submission feedback
-* Smooth UI interactions
+* Smooth UI transitions
 * Real-time updates across roles
+* Role-based conditional rendering
 
 ---
 
 ## 🎯 Design Decisions
 
-* Used centralized state for realistic data sharing
-* Implemented confirmation modal to prevent accidental submission
-* Used localStorage to simulate backend persistence
+* Centralized state for consistent data flow
+* `submittedBy` array for tracking per-user submissions
+* Confirmation modal to prevent accidental submission
+* localStorage used to simulate backend persistence
+* Role-based rendering for realistic workflow
 
 ---
 
 ## 📦 Deployment
 
-* Can be deployed using Vercel or Netlify
+* Deployed using Vercel
+* Live demo link included in submission
 
 ---
 
 ## 🧪 Future Improvements
 
-* Multi-user support
-* Authentication system
-* Backend integration
-* Assignment deadlines
+* Multi-user authentication system
+* Backend integration (Node.js + MongoDB)
+* Assignment deadlines & late submission tracking
+* File upload instead of external links
 
 ---
 
 ## 🙌 Conclusion
 
-This project demonstrates a scalable frontend architecture with real-world UI/UX patterns, focusing on clarity, responsiveness, and role-based functionality.
+This project demonstrates a scalable frontend architecture with real-world features like authentication, role-based access, and per-user tracking. It highlights strong fundamentals in React, state management, and UI/UX design while simulating real application workflows.
